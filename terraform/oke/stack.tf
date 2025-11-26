@@ -113,6 +113,10 @@ module "main" {
   # Dashboards
   opt_import_dashboards = var.opt_import_dashboards
 
+  #JMS plugin
+  deploy_jms_plugin        = var.deploy_jms_plugin
+  jms_install_key_override = var.jms_install_key_override
+
   # Logan
   opt_create_new_la_log_group = var.opt_create_new_la_log_group
   log_group_name              = local.oci_la_log_group_name

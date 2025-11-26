@@ -13,6 +13,12 @@ across their entire environment - using Logs, Metrics, and Object metadata.
 
 It does extensive enrichment of logs, metrics and object information to enable cross correlation across entities from different tiers in OCI Log Analytics. A collection of dashboards is provided to get users started quickly.
 
+
+>**(Optional) OCI Java Management Service**
+If your Kubernetes clusters are running Java workloads, consider using [Java Management Service (JMS)](https://www.oracle.com/java/jms/) to gain enhanced visibility and control over your Java deployments. JMS offers centralized Java Flight Recorder (JFR) data collection, making it easier to monitor performance and troubleshoot issues with your Java applications.
+Refer to the [setup guide](./docs/enable-jms.md) to enable JMS with this monitoring solution.
+
+
 ## Solution UI
 
 ![Kubernetes Solution - List Clusters View](logan/images/list-clusters.png)
@@ -321,6 +327,8 @@ Refer [here](#3c-import-dashboards).
 #### [Custom Logs Configuration](./docs/custom-logs.md)
 
 #### [Building Custom Container Images](./docs/custom-images.md)
+
+#### [Enabling Java Management Service](./docs/enable-jms.md)
 
 ## Contributing
 

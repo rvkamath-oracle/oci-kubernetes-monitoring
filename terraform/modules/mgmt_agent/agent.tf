@@ -2,15 +2,22 @@
 # Licensed under the Universal Permissive License v1.0 as shown at https://oss.oracle.com/licenses/upl.
 
 locals {
-  install_key   = oci_management_agent_management_agent_install_key.Kubernetes_AgentInstallKey.key
+  install_key   = var.deploy_jms_plugin ? var.jms_install_key_override : oci_management_agent_management_agent_install_key.Kubernetes_AgentInstallKey[0].key
   freeform_tags = module.format_tags.freeform_tags_string
   defined_tags  = module.format_tags.defined_tags_string
-  inputRspFileContent = base64encode(join("\n", [
+  inputRspFileContent = (var.deploy_jms_plugin ?
+  base64encode(join("\n", [
+    trimspace(base64decode(local.install_key)),
+    "AgentDisplayName = k8_mgmt_agent-${var.uniquifier}",
+    "FreeFormTags = ${local.freeform_tags}",
+    "DefinedTags = ${local.defined_tags}"
+  ])) :
+  base64encode(join("\n", [
     "ManagementAgentInstallKey = ${local.install_key}",
     "AgentDisplayName = k8_mgmt_agent-${var.uniquifier}",
     "FreeFormTags = ${local.freeform_tags}",
     "DefinedTags = ${local.defined_tags}"
-  ]))
+  ])))
 }
 
 output "defined_tags_string" {
@@ -28,6 +35,7 @@ module "format_tags" {
 }
 
 resource "oci_management_agent_management_agent_install_key" "Kubernetes_AgentInstallKey" {
+  count = var.deploy_jms_plugin ? 0 : 1
   compartment_id = var.compartment_ocid
   display_name   = "k8_mgmt_agent_key-${var.uniquifier}"
   time_expires   = timeadd(timestamp(), "8760h") # 1 year

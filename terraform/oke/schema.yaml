@@ -71,6 +71,8 @@ variableGroups:
       - ${stack_deployment_option}
       - ${enable_service_log}
       - ${opt_deploy_metric_server}
+      - ${deploy_jms_plugin}
+      - ${jms_install_key_override}
       - ${helm_chart_version}
       - ${fluentd_base_dir_path}
       - ${delay_in_seconds}
@@ -304,6 +306,25 @@ variables:
     title: Delay in seconds
     description: |-
       Adds custom delay in seconds before creating resources
+
+  #Option to enable JMS plugin
+  deploy_jms_plugin:
+    type: boolean
+    title: Enable Java management service (JMS) plugin
+    description: Check the box to enable JMS plugin for Management agent in the cluster.
+    default: false
+
+  #User provided install key from JMS fleet
+  jms_install_key_override:
+    type: string
+    title: JMS install key override
+    description: |-
+      Provide management agent install key from your JMS fleet to override the default install key.
+    required: true
+    pattern: '(^\S.*\S$)'
+    visible:
+      and:
+        - ${deploy_jms_plugin}
 
   # OCI tags
   tags:

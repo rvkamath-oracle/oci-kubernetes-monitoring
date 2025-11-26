@@ -172,6 +172,18 @@ variable "enable_service_log" {
   default = false
 }
 
+variable "deploy_jms_plugin" {
+  type        = bool
+  default     = false
+  description = "Deploy JMS plugin on Management agent."
+}
+
+variable "jms_install_key_override" {
+  type        = string
+  default     = ""
+  description = "User supplied install key for JMS fleet. Used only when deploy_jms_plugin = true."
+}
+
 ####
 ##  Developer Options
 ####

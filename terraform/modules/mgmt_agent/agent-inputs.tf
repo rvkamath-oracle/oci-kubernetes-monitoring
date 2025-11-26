@@ -22,3 +22,15 @@ variable "tags" {
   type    = object({ freeformTags = map(string), definedTags = map(string) })
   default = { "freeformTags" = {}, "definedTags" = {} }
 }
+
+variable "deploy_jms_plugin" {
+  type        = bool
+  default     = false
+  description = "Deploy JMS plugin on Management agent."
+}
+
+variable "jms_install_key_override" {
+  type        = string
+  default     = ""
+  description = "User supplied install key for JMS fleet. Used only when deploy_jms_plugin = true."
+}
