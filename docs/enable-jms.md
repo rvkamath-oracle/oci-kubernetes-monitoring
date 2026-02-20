@@ -10,7 +10,7 @@ Refer to [the official setup guide](https://docs.oracle.com/en-us/iaas/jms/doc/s
 
 
 ### Step 2: Create a JMS Fleet
-A fleet is a primary collection of managed instances you interact with in JMS.
+A fleet is the primary collection of managed instances used to interact with JMS.
 To create a fleet, follow [these instructions](https://docs.oracle.com/en-us/iaas/jms/doc/creating-fleet.html).
 Ensure to review and enable the [advanced features](https://docs.oracle.com/en-us/iaas/jms/doc/advanced-features.html) required for the fleet.
 
